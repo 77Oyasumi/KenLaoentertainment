@@ -38,23 +38,23 @@ checkbox_elements = WebDriverWait(driver, 5).until(
 #依次選擇97到113的年份
 for year in range(97, 114):
     select_year.select_by_value(str(year))
-    time.sleep(1)
+    time.sleep(0.1)
     select_month.select_by_value('12')
-    time.sleep(1)
+    time.sleep(0.1)
     select_county_element.click()
-    time.sleep(1)
+    time.sleep(0.1)
     checkbox_elements = WebDriverWait(driver, 5).until(
         EC.presence_of_all_elements_located((By.XPATH, '//label[@class="checkbox"]/input[@type="checkbox"]'))
     )
     for checkbox in checkbox_elements:
         if checkbox.get_attribute('value') == '0':
             checkbox.click()
-            time.sleep(1)
+            time.sleep(0.1)
     for value in county_values:
         for checkbox in checkbox_elements:
             if checkbox.get_attribute('value') == value:
                 checkbox.click()
-                time.sleep(1)
+                time.sleep(0.1)
                 checkbox.click()
 
 # 停留幾秒後關閉瀏覽器
